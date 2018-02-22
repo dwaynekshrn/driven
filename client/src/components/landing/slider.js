@@ -1,6 +1,25 @@
-import React from 'react';
+import _ from 'lodash';
+import React, {Component} from 'react';
 
-export default() => {
+const SLIDES = [
+    {key: 1, alt: 'image', slide: "https://source.unsplash.com/user/erondu/1600x900"},
+    {key: 2, alt: 'image', slide: "https://source.unsplash.com/collection/190727/1600x900"},
+    {key: 3, alt: 'image', slide: "https://source.unsplash.com/daily/"},
+    {key: 4, alt: 'image', slide: "https://source.unsplash.com/random/1600x900"}
+]
+
+class Slider extends Component{
+    renderSlides(){
+        return _.map(SLIDES, ({key, slide, alt}) => {
+           return(
+         <div key={key} className="carousel-item" href="#one!">
+            <img src={slide} alt={alt} />
+          </div>
+           );
+        });
+    }
+
+    render(){
     return(
         <div>
         <div className="carousel carousel-slider center" data-indicators="true">
@@ -12,28 +31,14 @@ export default() => {
         </div>
         </div>
         </div>
-        <div className="carousel-item red white-text" href="#one!">
-        <img src="https://source.unsplash.com/random" />
-          <h2>First Panel</h2>
-          <p className="white-text">This is your first panel</p>
-        </div>
-        <div className="carousel-item amber white-text" href="#two!">
-        <img src="https://source.unsplash.com/random" />
-          <h2>Second Panel</h2>
-          <p className="white-text">This is your second panel</p>
-        </div>
-        <div className="carousel-item green white-text" href="#three!">
-        <img src="https://source.unsplash.com/random" />
-          <h2>Third Panel</h2>
-          <p className="white-text">This is your third panel</p>
-        </div>
-        <div className="carousel-item blue white-text" href="#four!">
-        <img src="https://source.unsplash.com/random" />
-          <h2>Fourth Panel</h2>
-          <p className="white-text">This is your fourth panel</p>
-        </div>
+        {this.renderSlides()}
+ 
       </div>
   
         </div>
     )
 }
+
+}
+
+export default Slider;
